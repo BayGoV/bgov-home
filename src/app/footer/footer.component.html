@@ -1,13 +1,7 @@
 <nav>
   <ul>
-    <li>
-      <a class="mat-h4">DGoB</a>
-    </li>
-    <li>
-      <a class="mat-h4">Impressum</a>
-    </li>
-    <li>
-      <a class="mat-h4">Kontakt</a>
+    <li *ngFor="let link of links">
+      <a class="mat-h4">{{link }}</a>
     </li>
   </ul>
 </nav>
