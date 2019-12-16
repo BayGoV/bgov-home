@@ -1,6 +1,9 @@
+@import "../../theme";
+
 :host {
   display: block;
   width: 100%;
+  background: $dark-background;
 }
 
 ul {
@@ -12,4 +15,12 @@ ul {
 li {
   display: inline-block;
   margin: 1em;
+}
+
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-darker-color);
 }

@@ -1,6 +1,8 @@
+@import "../../theme";
+
 :host {
   display: block;
-  background: black;
+  background: $dark-background;
 }
 
 :host > * {
@@ -10,7 +12,7 @@
 
 h1 {
   color: #f5e7c2;
-  font-size: 2em;
+  font: 300 2em Chau Philomene One
 }
 
 img {
