@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@import "theme";
+@import "reset";
+
+* { margin: 0 }
+
+html {
+  background: #d7d7d7;
+}
+
+body {
+  height: 100%;
+  width: 1024px;
+  margin: auto;
+}
