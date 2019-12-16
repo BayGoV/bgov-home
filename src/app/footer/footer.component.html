@@ -1,7 +1,10 @@
 <nav>
   <ul>
-    <li *ngFor="let link of links">
-      <a class="mat-h4">{{link }}</a>
+    <li><a class="mat-h4" href="http://www.dgob.de" target="_blank" rel="noopener noreferrer">DGoB</a></li>
+    <li *ngFor="let link of interneLinks">
+      <a class="mat-h4"
+         [routerLink]="link.toLowerCase()"
+      >{{link}}</a>
     </li>
   </ul>
 </nav>

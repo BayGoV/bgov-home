@@ -4,5 +4,6 @@
 
 main {
   height: calc(100vH - (2 * 90px));
+  overflow-y: scroll;
   background: var(--primary-color);
 }

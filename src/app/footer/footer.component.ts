@@ -7,7 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  private links = ['DGob', 'Datenschutz', 'Impressum', 'Kontakt'];
+  private interneLinks = [
+    'Datenschutz',
+    'Impressum',
+    'Kontakt'];
 
   constructor() {
   }
