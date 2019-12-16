@@ -7,13 +7,15 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ImpressumComponent } from './impressum/impressum.component';
+import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ImpressumComponent
+    ImpressumComponent,
+    DatenschutzComponent
   ],
   imports: [
     BrowserModule,

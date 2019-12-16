@@ -3,7 +3,7 @@
 }
 
 main {
-  height: calc(100vH - (2 * 90px));
+  height: calc(100vH - (90px + 55px)); // 100% - (header+footer)
   overflow-y: scroll;
   background: var(--primary-color);
 }
