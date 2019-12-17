@@ -19,7 +19,7 @@ export class ApiInterceptor implements HttpInterceptor {
     Observable<HttpEvent<any>> {
     const authToken = this.login$.getValue().token;
     const authReq = req.clone({
-      headers: req.headers.set('Authorization', authToken),
+      headers: req.headers.set('Authorization', `Bearer ${authToken}`),
     });
     return next.handle(authReq);
   }

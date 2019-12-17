@@ -17,12 +17,13 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {aotLoginReducer} from './store/login.reducer';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule, MatInputModule, MatTooltipModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
+import {ApiInterceptor} from './http-interceptors/api-interceptor';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { HomeComponent } from './home/home.component';
     MatInputModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true},],
   bootstrap: [AppComponent],
 })
 export class AppModule {
