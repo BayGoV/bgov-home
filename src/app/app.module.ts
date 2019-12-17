@@ -22,6 +22,7 @@ import {MatFormFieldModule, MatInputModule, MatTooltipModule} from '@angular/mat
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {FormsModule} from '@angular/forms';
     ImpressumComponent,
     DatenschutzComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     HttpClientModule,
