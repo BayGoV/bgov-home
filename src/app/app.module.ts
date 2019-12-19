@@ -24,6 +24,7 @@ import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './home/home.component';
 import {ApiInterceptor} from './http-interceptors/api-interceptor';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {ApiInterceptor} from './http-interceptors/api-interceptor';
     DatenschutzComponent,
     LoginComponent,
     HomeComponent,
+    ProfileComponent,
   ],
   imports: [
     HttpClientModule,

@@ -10,13 +10,8 @@ import {filter, switchMap} from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  test$;
 
   constructor(private store: Store<{ login: { username: '', token: '' } }>, private http: HttpClient) {
-    this.test$ = store.pipe(
-      select('login'),
-      filter(user => !!user.token),
-      switchMap(() => http.get('/api')));
   }
 
   ngOnInit() {
