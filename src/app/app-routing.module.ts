@@ -5,10 +5,12 @@ import {DatenschutzComponent} from './datenschutz/datenschutz.component';
 import {HomeComponent} from './home/home.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AuthenticatedUserGuard} from './authenticated-user.guard';
+import {LoginComponent} from './login/login.component';
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'impressum', component: ImpressumComponent},
   {path: 'datenschutz', component: DatenschutzComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthenticatedUserGuard]},

@@ -1,6 +1,5 @@
 <a [routerLink]="['/']"><img src="assets/logo.jpeg" alt="logo"/></a>
 <h1>Bayerischer Go Verein e.V.</h1>
-<app-login *ngIf="login"></app-login>
-<mat-icon id="app-login" (click)="login = !login" [matTooltip]="login$ | async"
+<mat-icon id="app-login" (click)="profile()" [matTooltip]="displayName$ | async"
   >account_circle
 </mat-icon>

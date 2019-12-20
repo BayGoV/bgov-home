@@ -9,7 +9,8 @@ import {
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { select, Store } from '@ngrx/store';
-import {first, map, tap} from 'rxjs/operators';
+import { first, map, tap } from 'rxjs/operators';
+import { LoginState } from './store/login.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ import {first, map, tap} from 'rxjs/operators';
 export class AuthenticatedUserGuard implements CanActivate {
   constructor(
     private router: Router,
-    private store: Store<{ login: { username: ''; token: '' } }>,
+    private store: Store<{ login: LoginState }>,
   ) {}
 
   canActivate(
@@ -31,11 +32,9 @@ export class AuthenticatedUserGuard implements CanActivate {
     const helper = new JwtHelperService();
     return this.store.pipe(
       select('login'),
-      tap(c => console.log(c)),
       map(user => helper.decodeToken(user.token)),
-      map(payload => (payload ? payload.exp < Date.now() / 1000 : false)),
-      map(_ => true),
-      first()
+      map(payload => payload && payload.exp > Date.now() / 1000),
+      first(),
     );
   }
 }
