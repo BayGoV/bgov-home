@@ -22,7 +22,8 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   async login() {
-    await this.authService.login(this.email, this.password);
+    await this.authService.link(this.email);
+    // await this.authService.login(this.email, this.password);
     this.router.navigate(['/profile']);
   }
 }

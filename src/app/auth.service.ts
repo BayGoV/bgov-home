@@ -15,13 +15,8 @@ export class AuthService {
   constructor(private store: Store<{ login: LoginState }>) {}
 
   async login(email, password) {
-    const actionCodeSettings = {
-      url: BASE_URL,
-      handleCodeInApp: true,
-    };
     const auth = await firebase
       .auth()
-      // .sendSignInLinkToEmail(email, actionCodeSettings)
       .signInWithEmailAndPassword(email, password);
     this.user = auth.user;
     const token = await auth.user.getIdToken();
@@ -31,6 +26,16 @@ export class AuthService {
         token,
       }),
     );
+  }
+
+  async link(email) {
+    const actionCodeSettings = {
+      url: BASE_URL,
+      handleCodeInApp: true,
+    };
+    const auth = await firebase
+      .auth()
+      .sendSignInLinkToEmail(email, actionCodeSettings);
   }
 
   async refresh(): Promise<string> {
@@ -45,6 +50,7 @@ export class AuthService {
   }
 
   async logout() {
+    firebase.auth().signOut();
     this.store.dispatch(logout());
   }
 }
