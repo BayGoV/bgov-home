@@ -8,11 +8,9 @@ import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
-import { EntityDataModule } from '@ngrx/data';
+import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './app.effects';
-import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -30,6 +28,14 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { ApiInterceptor } from './http-interceptors/api-interceptor';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginEffects } from './store/login.effects';
+import { MembersService } from './members.service';
+import { PreferencesService } from './preferences.service';
+
+const defaultDataServiceConfig: DefaultDataServiceConfig = {
+  root: 'http://localhost:8080/api',
+  timeout: 3000, // request timeout
+};
 
 @NgModule({
   declarations: [
@@ -50,26 +56,21 @@ import { ProfileComponent } from './profile/profile.component';
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
-    EntityDataModule.forRoot(entityConfig),
-    EffectsModule.forRoot([AppEffects]),
-    StoreModule.forRoot(
-      { login: aotLoginReducer },
-      {
-        runtimeChecks: {
-          strictStateImmutability: true,
-          strictActionImmutability: true,
-        },
-      },
-    ),
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    StoreModule.forRoot({ login: aotLoginReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
+    EffectsModule.forRoot([LoginEffects]),
+    EntityDataModule.forRoot(entityConfig),
   ],
   providers: [
+    MembersService,
+    PreferencesService,
+    { provide: DefaultDataServiceConfig, useValue: defaultDataServiceConfig },
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
