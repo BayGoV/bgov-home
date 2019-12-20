@@ -1,8 +1,5 @@
 @import "theme";
-@import "reset";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
-* { margin: 0 }
 
 html {
   background: $light-background;
@@ -10,6 +7,6 @@ html {
 
 body {
   height: 100%;
-  max-width: 1024px;
-  margin: auto;
+  width: 100%;
+  background: var(--primary-color);
 }

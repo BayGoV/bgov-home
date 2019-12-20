@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { aotLoginReducer } from './store/login.reducer';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
+  MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
   MatTooltipModule,
@@ -48,6 +49,7 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     MatIconModule,
     MatTooltipModule,
+    MatButtonModule,
     EntityDataModule.forRoot(entityConfig),
     EffectsModule.forRoot([AppEffects]),
     StoreModule.forRoot(

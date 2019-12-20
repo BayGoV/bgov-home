@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.login$
         .pipe(
           map((user: LoginState) =>
-            user.token ? user.email : 'Not logged in',
+            user.token ? user.email : 'Anonym',
           ),
         )
         .subscribe(this.displayName$),
