@@ -29,8 +29,9 @@ export class AuthService {
   }
 
   async link(email) {
+    window.localStorage.setItem('emailForSignIn', email);
     const actionCodeSettings = {
-      url: BASE_URL,
+      url: BASE_URL + '/profile',
       handleCodeInApp: true,
     };
     const auth = await firebase
@@ -52,5 +53,22 @@ export class AuthService {
   async logout() {
     firebase.auth().signOut();
     this.store.dispatch(logout());
+  }
+
+  async emailSignIn() {
+    let email = window.localStorage.getItem('emailForSignIn');
+    if (!email) {
+      email = window.prompt('Please provide your email for confirmation');
+    }
+    const auth = await firebase.auth().signInWithEmailLink(email, window.location.href);
+    this.user = auth.user;
+    const token = await auth.user.getIdToken();
+    this.store.dispatch(
+      login({
+        email,
+        token,
+      }),
+    );
+    window.localStorage.removeItem('emailForSignIn');
   }
 }
