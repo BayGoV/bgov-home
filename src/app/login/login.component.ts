@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  method = 'login';
   email;
   password;
 
@@ -22,8 +23,11 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   async login() {
-    await this.authService.link(this.email);
-    // await this.authService.login(this.email, this.password);
+    await this.authService.login(this.email, this.password);
     this.router.navigate(['/profile']);
+  }
+
+  async link() {
+    await this.authService.link(this.email);
   }
 }

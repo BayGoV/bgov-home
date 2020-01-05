@@ -1,4 +1,8 @@
-<button mat-button (click)="logout()">
-  <mat-icon id="app-login">power_settings_new</mat-icon>
-  Abmelden
-</button>
+<ng-container *ngIf="currentMember | async as member">
+  <app-membercard [member]="member"></app-membercard>
+
+  <button mat-button (click)="logout()">
+    <mat-icon id="app-login">power_settings_new</mat-icon>
+    Abmelden
+  </button>
+</ng-container>

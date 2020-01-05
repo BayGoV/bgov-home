@@ -1,11 +1,14 @@
-<form class="login-form">
-  <mat-form-field class="example-full-width">
+<mat-icon (click)="method = 'link'">mail_outline</mat-icon>
+<mat-icon (click)="method = 'login'">exit_to_app</mat-icon>
+
+<form *ngIf="method === 'login'" class="login-form">
+  <mat-form-field>
     <label>
       <input matInput placeholder="Email" name="email" [(ngModel)]="email" />
     </label>
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field>
     <label>
       <input
         matInput
@@ -17,4 +20,17 @@
     </label>
   </mat-form-field>
   <mat-icon id="app-login" (click)="login()">exit_to_app</mat-icon>
+</form>
+
+<form *ngIf="method === 'link'" class="link-form">
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Email" name="email" [(ngModel)]="email" />
+    </label>
+  </mat-form-field>
+
+  <button mat-button (click)="link()">
+    <mat-icon>mail_outline</mat-icon>
+    Email-Login
+  </button>
 </form>
