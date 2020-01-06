@@ -31,10 +31,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginEffects } from './store/login.effects';
 import { MembersService } from './members.service';
 import { PreferencesService } from './preferences.service';
+import { API_URL } from './constants';
 import { MembercardComponent } from './membercard/membercard.component';
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: 'http://localhost:8080/api',
+  root: API_URL,
   timeout: 3000, // request timeout
 };
 
