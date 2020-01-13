@@ -37,6 +37,7 @@ import { API_URL } from './constants';
 import { MembercardComponent } from './membercard/membercard.component';
 import { PreferencecardComponent } from './preferencecard/preferencecard.component';
 import { MemberEffects } from './store/member.effects';
+import { MenuComponent } from './menu/menu.component';
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: API_URL,
@@ -55,6 +56,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     ProfileComponent,
     MembercardComponent,
     PreferencecardComponent,
+    MenuComponent,
   ],
   imports: [
     HttpClientModule,

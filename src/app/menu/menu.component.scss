@@ -1,0 +1,21 @@
+@import "../../theme";
+
+:host {
+  display: block;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  background: $dark-background;
+  width: 10em;
+}
+
+a.mat-h4 {
+  color: var(--primary-color);
+  margin: 1em;
+}
+
+a:hover {
+  color: var(--primary-darker-color);
+}
