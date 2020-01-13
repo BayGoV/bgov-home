@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { MembersService } from '../members.service';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { PreferencesService } from '../preferences.service';
+import {Member} from '../model/member.model';
 
 @Component({
   selector: 'app-profile',
@@ -11,18 +13,30 @@ import { map } from 'rxjs/operators';
 })
 export class ProfileComponent implements OnInit {
   currentMember;
+  currentPreference;
 
   constructor(
     private membersService: MembersService,
+    private preferenceService: PreferencesService,
     private authService: AuthService,
     private router: Router,
   ) {}
 
   ngOnInit() {
-    console.log('Looking for:', this.authService.user.email);
     this.currentMember = this.membersService.entities$.pipe(
       map(members =>
-        members.find(member => member.email.toLowerCase() === this.authService.user.email.toLowerCase()),
+        members.find(
+          member =>
+            member.email.toLowerCase() ===
+            this.authService.user.email.toLowerCase(),
+        ),
+      ),
+    );
+    this.currentPreference = this.currentMember.pipe(
+      switchMap((member: Member) =>
+        this.preferenceService.entities$.pipe(
+          map(preferences => preferences.find(p => p.id === member.id)),
+        ),
       ),
     );
   }

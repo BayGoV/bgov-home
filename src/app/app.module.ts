@@ -17,7 +17,9 @@ import { environment } from '../environments/environment';
 import { aotLoginReducer } from './store/login.reducer';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {
-  MatButtonModule, MatCardModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
   MatTooltipModule,
@@ -33,6 +35,8 @@ import { MembersService } from './members.service';
 import { PreferencesService } from './preferences.service';
 import { API_URL } from './constants';
 import { MembercardComponent } from './membercard/membercard.component';
+import { PreferencecardComponent } from './preferencecard/preferencecard.component';
+import { MemberEffects } from './store/member.effects';
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: API_URL,
@@ -50,6 +54,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     HomeComponent,
     ProfileComponent,
     MembercardComponent,
+    PreferencecardComponent,
   ],
   imports: [
     HttpClientModule,
@@ -62,14 +67,15 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    StoreModule.forRoot({login: aotLoginReducer}),
+    StoreModule.forRoot({ login: aotLoginReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([LoginEffects]),
+    EffectsModule.forRoot([LoginEffects, MemberEffects]),
     EntityDataModule.forRoot(entityConfig),
     MatCardModule,
+    MatCheckboxModule,
   ],
   providers: [
     MembersService,

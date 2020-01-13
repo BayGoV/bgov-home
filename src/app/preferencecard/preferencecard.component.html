@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-subtitle>Präferenzen</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-checkbox
+        [(ngModel)]="preference.doNotDisturb"
+        (ngModelChange)="change()"
+        >Keine Emails
+      </mat-checkbox>
+      <mat-checkbox
+        [(ngModel)]="preference.inviteMeToActivities"
+        (ngModelChange)="change()"
+        >Einladungen zu Aktivitäten
+      </mat-checkbox>
+      <mat-checkbox
+        [(ngModel)]="preference.inviteMeToTournaments"
+        (ngModelChange)="change()"
+        >Einladungen zu Turnieren
+      </mat-checkbox>
+      <mat-checkbox
+        [(ngModel)]="preference.inviteMeToDoodles"
+        (ngModelChange)="change()"
+        >Einladungen zu Meinungsbildern (Doodle)
+      </mat-checkbox>
+    </p>
+  </mat-card-content>
+</mat-card>
