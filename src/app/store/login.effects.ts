@@ -11,7 +11,7 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(login),
-        tap(() => this.socketService.ping()),
+        tap(() => this.socketService.subscribe()),
         switchMap(action => this.membersService.getByKey(action.email)),
       ),
     { dispatch: false },
