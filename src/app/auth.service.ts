@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { BASE_URL } from './constants';
+import { select, Store } from '@ngrx/store';
+import { API_KEY, AUTH_DOMAIN, BASE_URL } from './constants';
 import { login, logout } from './store/login.actions';
 import { LoginState } from './store/login.reducer';
+import { first, map } from 'rxjs/operators';
 
 declare const firebase: any;
 
@@ -10,18 +11,36 @@ declare const firebase: any;
   providedIn: 'root',
 })
 export class AuthService {
-  auth;
+  private authService;
 
   get email() {
-    return this.auth.currentUser && this.auth.currentUser.email;
+    return this.authService.currentUser && this.authService.currentUser.email;
+  }
+
+  token() {
+    return this.store
+      .pipe(
+        select('login'),
+        map(loginState => loginState.token),
+        first(),
+      )
+      .toPromise();
   }
 
   constructor(private store: Store<{ login: LoginState }>) {
-    this.auth = firebase.auth();
+    const firebaseConfig = {
+      apiKey: API_KEY,
+      authDomain: AUTH_DOMAIN,
+    };
+    firebase.initializeApp(firebaseConfig);
+    this.authService = firebase.auth();
   }
 
   async login(email, password) {
-    const auth = await this.auth.signInWithEmailAndPassword(email, password);
+    const auth = await this.authService.signInWithEmailAndPassword(
+      email,
+      password,
+    );
     const token = await auth.user.getIdToken();
     this.store.dispatch(
       login({
@@ -37,17 +56,17 @@ export class AuthService {
       url: BASE_URL + '/profile',
       handleCodeInApp: true,
     };
-    const auth = await this.auth.sendSignInLinkToEmail(
+    const auth = await this.authService.sendSignInLinkToEmail(
       email,
       actionCodeSettings,
     );
   }
 
   async refresh(): Promise<string> {
-    const token = await this.auth.currentUser.getIdToken();
+    const token = await this.authService.currentUser.getIdToken();
     this.store.dispatch(
       login({
-        email: this.auth.currentUser.email,
+        email: this.authService.currentUser.email,
         token,
       }),
     );
@@ -55,7 +74,7 @@ export class AuthService {
   }
 
   async logout() {
-    this.auth.signOut();
+    this.authService.signOut();
     this.store.dispatch(logout());
   }
 
@@ -64,7 +83,7 @@ export class AuthService {
     if (!email) {
       email = window.prompt('Please provide your email for confirmation');
     }
-    const auth = await this.auth.signInWithEmailLink(
+    const auth = await this.authService.signInWithEmailLink(
       email,
       window.location.href,
     );

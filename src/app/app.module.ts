@@ -33,11 +33,17 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginEffects } from './store/login.effects';
 import { MembersService } from './members.service';
 import { PreferencesService } from './preferences.service';
-import { API_URL } from './constants';
+import { API_URL, SOCKET_URL } from './constants';
 import { MembercardComponent } from './membercard/membercard.component';
 import { PreferencecardComponent } from './preferencecard/preferencecard.component';
 import { MemberEffects } from './store/member.effects';
 import { MenuComponent } from './menu/menu.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const socketConfig: SocketIoConfig = {
+  url: SOCKET_URL,
+  options: {},
+};
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: API_URL,
@@ -69,6 +75,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    SocketIoModule.forRoot(socketConfig),
     StoreModule.forRoot({ login: aotLoginReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
