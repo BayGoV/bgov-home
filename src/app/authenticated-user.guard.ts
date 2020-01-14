@@ -6,10 +6,9 @@ import {
   Router,
 } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { select, Store } from '@ngrx/store';
-import { first, map } from 'rxjs/operators';
-import { LoginState } from './store/login.reducer';
+import { catchError, filter, first, map, timeout } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { EMPTY, interval } from 'rxjs';
 
 declare const firebase: any;
 
@@ -17,28 +16,36 @@ declare const firebase: any;
   providedIn: 'root',
 })
 export class AuthenticatedUserGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private store: Store<{ login: LoginState }>,
-    private authService: AuthService,
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
+
+  async waitForUser(auth) {
+    return interval(100)
+      .pipe(
+        map(() => auth.currentUser),
+        filter(currentUser => !!currentUser),
+        first(),
+        timeout(1000),
+        catchError(e => EMPTY),
+      )
+      .toPromise();
+  }
 
   async canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Promise<boolean> {
     const helper = new JwtHelperService();
-    if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      await this.authService.emailSignIn();
+    const auth = firebase.auth();
+    const currentUser = await this.waitForUser(auth);
+    if (!!currentUser) {
+      await this.authService.refresh();
+    } else {
+      if (auth.isSignInWithEmailLink(window.location.href)) {
+        await this.authService.emailSignIn();
+      } else {
+        this.router.navigate(['/login']);
+      }
     }
-
-    return this.store
-      .pipe(
-        select('login'),
-        map(user => helper.decodeToken(user.token)),
-        map(payload => !!payload && payload.exp > Date.now() / 1000),
-        first(),
-      )
-      .toPromise();
+    return true;
   }
 }

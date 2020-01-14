@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  private interneLinks = ['Impressum', 'Datenschutz'];
+  interneLinks = ['Impressum', 'Datenschutz'];
 
   constructor() {
   }

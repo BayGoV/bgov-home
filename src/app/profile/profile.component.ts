@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
         members.find(
           member =>
             member.email.toLowerCase() ===
-            this.authService.user.email.toLowerCase(),
+            this.authService.email.toLowerCase(),
         ),
       ),
     );

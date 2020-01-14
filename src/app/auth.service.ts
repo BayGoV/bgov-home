@@ -10,15 +10,18 @@ declare const firebase: any;
   providedIn: 'root',
 })
 export class AuthService {
-  user;
+  auth;
 
-  constructor(private store: Store<{ login: LoginState }>) {}
+  get email() {
+    return this.auth.currentUser && this.auth.currentUser.email;
+  }
+
+  constructor(private store: Store<{ login: LoginState }>) {
+    this.auth = firebase.auth();
+  }
 
   async login(email, password) {
-    const auth = await firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password);
-    this.user = auth.user;
+    const auth = await this.auth.signInWithEmailAndPassword(email, password);
     const token = await auth.user.getIdToken();
     this.store.dispatch(
       login({
@@ -34,16 +37,17 @@ export class AuthService {
       url: BASE_URL + '/profile',
       handleCodeInApp: true,
     };
-    const auth = await firebase
-      .auth()
-      .sendSignInLinkToEmail(email, actionCodeSettings);
+    const auth = await this.auth.sendSignInLinkToEmail(
+      email,
+      actionCodeSettings,
+    );
   }
 
   async refresh(): Promise<string> {
-    const token = await this.user.getIdToken();
+    const token = await this.auth.currentUser.getIdToken();
     this.store.dispatch(
       login({
-        email: this.user.email,
+        email: this.auth.currentUser.email,
         token,
       }),
     );
@@ -51,7 +55,7 @@ export class AuthService {
   }
 
   async logout() {
-    firebase.auth().signOut();
+    this.auth.signOut();
     this.store.dispatch(logout());
   }
 
@@ -60,8 +64,10 @@ export class AuthService {
     if (!email) {
       email = window.prompt('Please provide your email for confirmation');
     }
-    const auth = await firebase.auth().signInWithEmailLink(email, window.location.href);
-    this.user = auth.user;
+    const auth = await this.auth.signInWithEmailLink(
+      email,
+      window.location.href,
+    );
     const token = await auth.user.getIdToken();
     this.store.dispatch(
       login({

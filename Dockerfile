@@ -8,7 +8,7 @@ COPY angular.json ./
 COPY tsconfig.* ./
 COPY tslint.json ./
 RUN npm install
-RUN npm run build
+RUN npm run build -- --prod
 FROM nginx
 COPY nginx.conf /etc/nginx/conf.d/
 COPY --from=builder /workspace/dist/bgov-home /app
