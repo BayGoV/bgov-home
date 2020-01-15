@@ -1,0 +1,7 @@
+<ng-container *ngIf="snackbar$ | async as snackbar">
+  <div (click)="dismiss()">
+    <p>{{ snackbar.message }}</p>
+    <mat-spinner *ngIf="snackbar.progress" diameter="18" color="accent"></mat-spinner>
+    <mat-icon *ngIf="!snackbar.progress">close</mat-icon>
+  </div>
+</ng-container>

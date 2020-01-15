@@ -1,0 +1,31 @@
+<h3 class="mat-h3">
+  Wir freuen uns über Kooperationsanfragen, Verbesserungsvorschläge und Hinweise
+  aller Art
+</h3>
+<form>
+  <mat-form-field appearance="fill">
+    <label>
+      <input
+        matInput
+        placeholder="Überschrift"
+        name="subject"
+        [(ngModel)]="subject"
+      />
+    </label>
+    <mat-hint>Maximal 100 Zeichen</mat-hint>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="textarea">
+    <label>
+      <textarea
+        matInput
+        placeholder="Nachricht"
+        name="message"
+        [(ngModel)]="message"
+      ></textarea>
+    </label>
+  </mat-form-field>
+</form>
+<button mat-button (click)="snack()">
+  <mat-icon>mail_outline</mat-icon>
+  Absenden
+</button>

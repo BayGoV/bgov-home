@@ -22,6 +22,8 @@ import {
   MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressSpinnerModule,
+  MatSnackBarModule,
   MatTooltipModule,
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,20 +35,24 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginEffects } from './store/login.effects';
 import { MembersService } from './members.service';
 import { PreferencesService } from './preferences.service';
-import { API_URL, SOCKET_URL } from './constants';
+import { API_URL } from './constants';
 import { MembercardComponent } from './membercard/membercard.component';
 import { PreferencecardComponent } from './preferencecard/preferencecard.component';
 import { MemberEffects } from './store/member.effects';
 import { MenuComponent } from './menu/menu.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ContactComponent } from './contact/contact.component';
+import { SnackbarEffects } from './store/snackbar.effects';
+import { aotSnackbarReducer } from './store/snackbar.reducer';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 const socketConfig: SocketIoConfig = {
-  url: SOCKET_URL,
+  url: API_URL,
   options: {},
 };
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
-  root: API_URL,
+  root: API_URL + '/api',
   timeout: 3000, // request timeout
 };
 
@@ -63,7 +69,10 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MembercardComponent,
     PreferencecardComponent,
     MenuComponent,
+    ContactComponent,
+    SnackbarComponent,
   ],
+  entryComponents: [SnackbarComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -74,17 +83,22 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
     FormsModule,
     SocketIoModule.forRoot(socketConfig),
-    StoreModule.forRoot({ login: aotLoginReducer }),
+    StoreModule.forRoot({
+      login: aotLoginReducer,
+      snackbar: aotSnackbarReducer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([LoginEffects, MemberEffects]),
+    EffectsModule.forRoot([LoginEffects, MemberEffects, SnackbarEffects]),
     EntityDataModule.forRoot(entityConfig),
     MatCardModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     MembersService,
