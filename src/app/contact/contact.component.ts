@@ -23,33 +23,44 @@ export class ContactComponent implements OnInit {
   }
 
   snack() {
-    this.store.dispatch(
-      snackbar({
-        active: true,
-        message: 'Nachricht wird übertragen',
-        progress: true,
-      }),
-    );
-    this.http
-      .post(API_URL + '/contact/anon', {
-        subject: this.subject,
-        message: this.message,
-      })
-      .subscribe(
-        () =>
-          this.store.dispatch(
-            snackbar({
-              active: false,
-            }),
-          ),
-        () =>
-          this.store.dispatch(
-            snackbar({
-              active: true,
-              message: 'Fehler. Bitte später versuchen.',
-            }),
-          ),
+    if (!this.subject && !this.message) {
+      this.store.dispatch(
+        snackbar({
+          active: true,
+          message: 'Das Formular ist leer.',
+          progress: false,
+        }),
       );
-    this.reset();
+    } else {
+      this.store.dispatch(
+        snackbar({
+          active: true,
+          message: 'Nachricht wird übertragen',
+          progress: true,
+        }),
+      );
+      this.http
+        .post(API_URL + '/contact/anon', {
+          subject: this.subject,
+          message: this.message,
+        })
+        .subscribe(
+          () => {
+            this.reset();
+            this.store.dispatch(
+              snackbar({
+                active: false,
+              }),
+            );
+          },
+          () =>
+            this.store.dispatch(
+              snackbar({
+                active: true,
+                message: 'Fehler. Bitte später versuchen.',
+              }),
+            ),
+        );
+    }
   }
 }
