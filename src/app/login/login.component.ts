@@ -36,7 +36,6 @@ export class LoginComponent {
   }
 
   async link() {
-    console.log(this.email);
     try {
       await this.http.post(API_URL + '/api/member/canSignIn', {
         email: this.email,
