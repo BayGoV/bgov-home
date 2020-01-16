@@ -49,7 +49,8 @@ export class ContactComponent implements OnInit {
             this.reset();
             this.store.dispatch(
               snackbar({
-                active: false,
+                active: true,
+                message: 'Nachricht erfolgreich übertragen. Danke.',
               }),
             );
           },

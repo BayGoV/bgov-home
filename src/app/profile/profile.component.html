@@ -1,9 +1,6 @@
 <ng-container *ngIf="currentMember | async as member">
   <app-membercard [member]="member"></app-membercard>
-  <ng-container *ngIf="currentPreference | async as preference">
-    <app-preferencecard [preference]="preference"></app-preferencecard>
-  </ng-container>
-
+  <app-preferencecard [preference$]="currentPreference"></app-preferencecard>
   <button mat-button (click)="logout()">
     <mat-icon id="app-login">power_settings_new</mat-icon>
     Abmelden

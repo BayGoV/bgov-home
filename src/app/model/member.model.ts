@@ -1,4 +1,6 @@
-export class Member {
+import { VersionedDataTransferObject } from './versioned-data-transfer-object';
+
+export class Member extends VersionedDataTransferObject {
   id: string;
   email: string;
   firstname: string;
@@ -7,4 +9,5 @@ export class Member {
   street: string;
   zip: string;
   city: string;
+  dgoz: boolean;
 }

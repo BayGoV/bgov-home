@@ -7,3 +7,13 @@ p {
   flex-direction: column;
   margin-left: 2em;
 }
+
+mat-card-subtitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+mat-spinner {
+  margin-left: 1em;
+}

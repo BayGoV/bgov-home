@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Preference} from '../model/preference.model';
-import {PreferencesService} from '../preferences.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Preference } from '../model/preference.model';
+import { PreferencesService } from '../preferences.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-preferencecard',
@@ -8,15 +9,14 @@ import {PreferencesService} from '../preferences.service';
   styleUrls: ['./preferencecard.component.scss'],
 })
 export class PreferencecardComponent implements OnInit {
-  @Input() preference: Preference;
+  @Input() preference$: Observable<Preference>;
 
-  constructor(private preferenceService: PreferencesService) {
-  }
+  constructor(private preferenceService: PreferencesService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  change() {
-    this.preferenceService.update(this.preference);
+  change(preference) {
+    delete preference.s;
+    this.preferenceService.update(preference);
   }
 }

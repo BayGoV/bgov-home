@@ -1,27 +1,30 @@
-<mat-card>
+<mat-card *ngIf="preference$ | async as preference">
   <mat-card-header>
-    <mat-card-subtitle>Präferenzen</mat-card-subtitle>
+    <mat-card-subtitle
+      >Präferenzen
+      <mat-spinner *ngIf="!preference.s" diameter="18"></mat-spinner>
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>
       <mat-checkbox
         [(ngModel)]="preference.doNotDisturb"
-        (ngModelChange)="change()"
+        (ngModelChange)="change(preference)"
         >Keine Emails
       </mat-checkbox>
       <mat-checkbox
         [(ngModel)]="preference.inviteMeToActivities"
-        (ngModelChange)="change()"
+        (ngModelChange)="change(preference)"
         >Einladungen zu Aktivitäten
       </mat-checkbox>
       <mat-checkbox
         [(ngModel)]="preference.inviteMeToTournaments"
-        (ngModelChange)="change()"
+        (ngModelChange)="change(preference)"
         >Einladungen zu Turnieren
       </mat-checkbox>
       <mat-checkbox
         [(ngModel)]="preference.inviteMeToDoodles"
-        (ngModelChange)="change()"
+        (ngModelChange)="change(preference)"
         >Einladungen zu Meinungsbildern (Doodle)
       </mat-checkbox>
     </p>
