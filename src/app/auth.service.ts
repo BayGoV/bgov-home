@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { API_KEY, AUTH_DOMAIN, BASE_URL } from './constants';
+import { API_KEY, API_URL, AUTH_DOMAIN, BASE_URL } from './constants';
 import { login, logout } from './store/login.actions';
 import { LoginState } from './store/login.reducer';
 import { first, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { snackbar } from './store/snackbar.actions';
 
 declare const firebase: any;
 
