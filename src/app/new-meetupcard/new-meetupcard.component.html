@@ -1,1 +1,1 @@
-<app-meetupcard [meetup$]="meetup$" editable="true"></app-meetupcard>
+<app-meetupcard [meetup$]="meetup$" [editing]="true" (doneEditing)="closeDialog()"></app-meetupcard>

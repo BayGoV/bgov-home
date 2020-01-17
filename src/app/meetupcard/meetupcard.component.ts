@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Observable } from 'rxjs';
 import { Meetup } from '../model/meetup.model';
 import { MeetupService } from '../meetup.service';
@@ -11,7 +11,8 @@ import { MeetupService } from '../meetup.service';
 export class MeetupcardComponent implements OnInit {
   @Input() meetup$: Observable<Meetup>;
   @Input() editable = false;
-  editing = false;
+  @Input() editing = false;
+  @Output() doneEditing = new EventEmitter();
 
   constructor(private meetupService: MeetupService) {}
 
@@ -19,6 +20,8 @@ export class MeetupcardComponent implements OnInit {
 
   change(meetup) {
     delete meetup.s;
-    this.meetup$ = this.meetupService.update(meetup);
+    this.meetupService.update(meetup);
+    this.editing = false;
+    this.doneEditing.emit();
   }
 }

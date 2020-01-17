@@ -1,7 +1,13 @@
-<h3 class="mat-h3">Go Spielabende in Bayern</h3>
-<button *ngIf="login$ | async" (click)="addOne()">
-  <mat-icon>note_add</mat-icon>
-</button>
+<div>
+  <h3 class="mat-h3">
+    Go Spielabende in Bayern
+  </h3>
+  <mat-icon *ngIf="login$ | async" (click)="addOne()">note_add</mat-icon>
+</div>
 <ng-container *ngIf="meetups$ | async as meetups">
-  <app-meetupcard *ngFor="let meetup of meetups" [meetup$]="meetup$(meetup)" [editable]="editable(meetup) | async"></app-meetupcard>
+  <app-meetupcard
+    *ngFor="let meetup of meetups"
+    [meetup$]="meetup$(meetup)"
+    [editable]="editable(meetup) | async"
+  ></app-meetupcard>
 </ng-container>

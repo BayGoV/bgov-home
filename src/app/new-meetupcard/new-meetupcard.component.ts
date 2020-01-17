@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-new-meetupcard',
@@ -15,9 +16,14 @@ export class NewMeetupcardComponent implements OnInit {
     email: { value: '', scope: 'public' },
     phone: { value: '', scope: 'public' },
     scope: 'public',
+    s: 'New',
   });
 
-  constructor() {}
+  constructor(public dialogRef: MatDialogRef<NewMeetupcardComponent>) {}
 
   ngOnInit() {}
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

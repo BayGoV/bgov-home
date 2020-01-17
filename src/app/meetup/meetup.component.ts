@@ -4,7 +4,7 @@ import {NewMeetupcardComponent} from '../new-meetupcard/new-meetupcard.component
 import {MeetupService} from '../meetup.service';
 import {LoginState} from '../store/login.reducer';
 import {select, Store} from '@ngrx/store';
-import {map, tap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {MembersService} from '../members.service';
 
 @Component({
@@ -46,7 +46,6 @@ export class MeetupComponent implements OnInit {
 
   editable(meetup) {
     return this.memberService.getSelf().pipe(
-      tap(m => console.log(m)),
       map(member => !!member && meetup.memberId === member.id),
     );
   }
