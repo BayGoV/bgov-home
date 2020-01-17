@@ -1,0 +1,7 @@
+<h3 class="mat-h3">Go Spielabende in Bayern</h3>
+<button *ngIf="login$ | async" (click)="addOne()">
+  <mat-icon>note_add</mat-icon>
+</button>
+<ng-container *ngIf="meetups$ | async as meetups">
+  <app-meetupcard *ngFor="let meetup of meetups" [meetup$]="meetup$(meetup)"></app-meetupcard>
+</ng-container>

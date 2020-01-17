@@ -2,12 +2,13 @@ import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
 
 const entityMetadata: EntityMetadataMap = {
   Member: {},
-  Preference: {}
+  Preference: {},
+  Meetup: {},
 };
 
-const pluralNames = { };
+const pluralNames = { Meetup: 'meetup' };
 
 export const entityConfig: EntityDataModuleConfig = {
   entityMetadata,
-  pluralNames
+  pluralNames,
 };

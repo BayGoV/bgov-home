@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthenticatedUserGuard } from './authenticated-user.guard';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
+import {MeetupComponent} from './meetup/meetup.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'contact',
         component: ContactComponent,
+      },
+      {
+        path: 'meetup',
+        component: MeetupComponent,
       },
     ],
   },

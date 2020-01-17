@@ -20,6 +20,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatProgressSpinnerModule,
@@ -45,6 +46,9 @@ import { ContactComponent } from './contact/contact.component';
 import { SnackbarEffects } from './store/snackbar.effects';
 import { aotSnackbarReducer } from './store/snackbar.reducer';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { MeetupcardComponent } from './meetupcard/meetupcard.component';
+import { MeetupComponent } from './meetup/meetup.component';
+import { NewMeetupcardComponent } from './new-meetupcard/new-meetupcard.component';
 
 const socketConfig: SocketIoConfig = {
   url: API_URL,
@@ -71,8 +75,11 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MenuComponent,
     ContactComponent,
     SnackbarComponent,
+    MeetupcardComponent,
+    MeetupComponent,
+    NewMeetupcardComponent,
   ],
-  entryComponents: [SnackbarComponent],
+  entryComponents: [SnackbarComponent, NewMeetupcardComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -84,6 +91,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDialogModule,
     FormsModule,
     SocketIoModule.forRoot(socketConfig),
     StoreModule.forRoot({
