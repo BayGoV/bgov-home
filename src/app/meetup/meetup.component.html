@@ -3,5 +3,5 @@
   <mat-icon>note_add</mat-icon>
 </button>
 <ng-container *ngIf="meetups$ | async as meetups">
-  <app-meetupcard *ngFor="let meetup of meetups" [meetup$]="meetup$(meetup)"></app-meetupcard>
+  <app-meetupcard *ngFor="let meetup of meetups" [meetup$]="meetup$(meetup)" [editable]="editable(meetup) | async"></app-meetupcard>
 </ng-container>
