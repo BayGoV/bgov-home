@@ -23,7 +23,7 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatRadioModule,
   MatSnackBarModule,
   MatTooltipModule,
 } from '@angular/material';
@@ -49,6 +49,7 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
 import { MeetupcardComponent } from './meetupcard/meetupcard.component';
 import { MeetupComponent } from './meetup/meetup.component';
 import { NewMeetupcardComponent } from './new-meetupcard/new-meetupcard.component';
+import { MeetuptableComponent } from './meetuptable/meetuptable.component';
 
 const socketConfig: SocketIoConfig = {
   url: API_URL,
@@ -78,6 +79,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MeetupcardComponent,
     MeetupComponent,
     NewMeetupcardComponent,
+    MeetuptableComponent,
   ],
   entryComponents: [SnackbarComponent, NewMeetupcardComponent],
   imports: [
@@ -107,6 +109,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatCardModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
   ],
   providers: [
     MembersService,

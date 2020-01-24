@@ -18,7 +18,6 @@ export class MeetupComponent implements OnInit {
   login$;
 
   constructor(
-    public dialog: MatDialog,
     private meetupService: MeetupService,
     private memberService: MembersService,
     private store: Store<{ login: LoginState }>,
@@ -27,15 +26,13 @@ export class MeetupComponent implements OnInit {
 
   ngOnInit() {
     this.meetupService.getAll();
-    this.meetups$ = this.meetupService.entities$;
+    this.meetups$ = this.meetupService.entities$.pipe(
+      map(meetups => meetups.filter(meetup => meetup.scope !== 'private')),
+    );
     this.login$ = this.store.pipe(
       select('login'),
       map(login => !!login.token),
     );
-  }
-
-  addOne() {
-    this.dialog.open(NewMeetupcardComponent);
   }
 
   meetup$(meetup) {
@@ -45,8 +42,8 @@ export class MeetupComponent implements OnInit {
   }
 
   editable(meetup) {
-    return this.memberService.getSelf().pipe(
-      map(member => !!member && meetup.memberId === member.id),
-    );
+    return this.memberService
+      .getSelf()
+      .pipe(map(member => !!member && meetup.memberId === member.id));
   }
 }

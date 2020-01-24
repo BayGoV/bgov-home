@@ -4,7 +4,10 @@ import { Router } from '@angular/router';
 import { MembersService } from '../members.service';
 import { map, switchMap } from 'rxjs/operators';
 import { PreferencesService } from '../preferences.service';
-import {Member} from '../model/member.model';
+import { Member } from '../model/member.model';
+import { MeetupService } from '../meetup.service';
+import { NewMeetupcardComponent } from '../new-meetupcard/new-meetupcard.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +17,7 @@ import {Member} from '../model/member.model';
 export class ProfileComponent implements OnInit {
   currentMember;
   currentPreference;
+  meetups$;
 
   constructor(
     private membersService: MembersService,
@@ -27,8 +31,7 @@ export class ProfileComponent implements OnInit {
       map(members =>
         members.find(
           member =>
-            member.email.toLowerCase() ===
-            this.authService.email.toLowerCase(),
+            member.email.toLowerCase() === this.authService.email.toLowerCase(),
         ),
       ),
     );

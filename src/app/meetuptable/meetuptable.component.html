@@ -1,0 +1,36 @@
+<mat-card *ngIf="meetups$ | async as meetups">
+  <mat-card-header>
+    <mat-card-subtitle>Eigene Spielabende</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <table>
+      <tr class="header">
+        <th></th>
+        <th><label>Entwurf</label><label>Verein</label><label>Öffentlich</label></th>
+        <th>bearbeiten</th>
+      </tr>
+      <tr *ngFor="let meetup of meetups">
+        <td class="name" (click)="editMeetup(meetup)">
+          {{ meetup.name }}
+        </td>
+        <td>
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="meetup.scope" (change)="change(meetup)">
+            <mat-radio-button value="private"></mat-radio-button>
+            <mat-radio-button value="internal"></mat-radio-button>
+            <mat-radio-button value="public"></mat-radio-button>
+          </mat-radio-group>
+        </td>
+        <td>
+          <mat-icon color="accent" (click)="editMeetup(meetup)">edit</mat-icon>
+        </td>
+      </tr>
+      <tr style="height: 1em"></tr>
+      <tr>
+        <td (click)="addOne()" colspan="4">
+          <mat-icon class="add">note_add</mat-icon>
+          Spielabend hinzufügen
+        </td>
+      </tr>
+    </table>
+  </mat-card-content>
+</mat-card>

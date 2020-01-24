@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+
+table {
+  margin-left: 2em;
+  width: 90%;
+}
+
+mat-icon {
+  font-size: 1.2em;
+}
+
+td {
+  text-align: center;
+}
+
+td.name {
+  text-align: left;
+}
+
+tr.header {
+  height: 1.5em;
+}
+
+mat-icon.add {
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+mat-radio-button {
+ margin-left: 1em;
+}
+
+th label {
+  padding-left: 1em;
+}
