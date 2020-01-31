@@ -28,7 +28,8 @@ export class LoginComponent {
     private router: Router,
     private http: HttpClient,
     private store: Store<{}>,
-  ) {}
+  ) {
+  }
 
   async login() {
     await this.authService.login(this.email, this.password);
@@ -37,17 +38,24 @@ export class LoginComponent {
 
   async link() {
     try {
-      await this.http.post(API_URL + '/api/member/canSignIn', {
-        email: this.email,
-      }).toPromise();
+      await this.http
+        .post(API_URL + '/api/member/canSignIn', {
+          email: this.email,
+        })
+        .toPromise();
       await this.authService.link(this.email);
       this.store.dispatch(
-        snackbar({ active: true, message: 'Email gesendet. Bitte auch SPAM/AV checken.' }),
+        snackbar({
+          active: true,
+          message: 'Email gesendet. Bitte auch SPAM/AV checken.',
+        }),
       );
     } catch (e) {
-      this.store.dispatch(
-        snackbar({ active: true, message: 'Email nicht gefunden.' }),
-      );
+      const message =
+        e.status === 404
+          ? 'Email nicht gefunden.'
+          : 'Unbekannter Fehler. Bitte melden.';
+      this.store.dispatch(snackbar({ active: true, message }));
     }
   }
 }
