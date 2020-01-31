@@ -35,6 +35,7 @@ export class MeetuptableComponent implements OnInit {
   }
 
   change(meetup) {
+    delete meetup.s;
     this.meetupService.update(meetup);
   }
 }

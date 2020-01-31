@@ -16,7 +16,14 @@ td {
 }
 
 td.name {
+  width: 10em;
   text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+mat-spinner {
+  margin-left: 0.5em;
 }
 
 tr.header {

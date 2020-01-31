@@ -13,7 +13,7 @@
       </tr>
       <tr *ngFor="let meetup of meetups">
         <td class="name" (click)="editMeetup(meetup)">
-          {{ meetup.name }}
+          {{ meetup.name }} <mat-spinner *ngIf="!meetup.s" diameter="18"></mat-spinner>
         </td>
         <td>
           <mat-radio-group
