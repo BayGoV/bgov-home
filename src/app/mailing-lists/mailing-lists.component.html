@@ -1,0 +1,3 @@
+<ng-container *ngIf="mailinglist$ | async as mailinglists">
+  <p> Alle Emails: <span *ngFor="let mail of mailinglists.all">{{mail}}, </span></p>
+</ng-container>

@@ -10,13 +10,18 @@ import { ContactComponent } from './contact/contact.component';
 import { MeetupComponent } from './meetup/meetup.component';
 import { AuthenticationHelperGuard } from './authentication-helper.guard';
 import { MembershipComponent } from './membership/membership.component';
+import { MailingListsComponent } from './mailing-lists/mailing-lists.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'home',
     component: HomeComponent,
     children: [
+      { path: '',
+        pathMatch: 'full',
+        component: WelcomeComponent },
       {
         path: 'contact',
         component: ContactComponent,
@@ -29,6 +34,11 @@ const routes: Routes = [
       {
         path: 'membership',
         component: MembershipComponent,
+      },
+      {
+        path: 'mailinglists',
+        component: MailingListsComponent,
+        canActivate: [AuthenticatedUserGuard],
       },
     ],
   },

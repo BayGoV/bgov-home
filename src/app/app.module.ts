@@ -51,6 +51,8 @@ import { MeetupComponent } from './meetup/meetup.component';
 import { MeetuptableComponent } from './meetuptable/meetuptable.component';
 import { EditMeetupcardComponent } from './edit-meetupcard/edit-meetupcard.component';
 import { MembershipComponent } from './membership/membership.component';
+import { MailingListsComponent } from './mailing-lists/mailing-lists.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 const socketConfig: SocketIoConfig = {
   url: API_URL,
@@ -82,6 +84,8 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MeetuptableComponent,
     EditMeetupcardComponent,
     MembershipComponent,
+    MailingListsComponent,
+    WelcomeComponent,
   ],
   entryComponents: [SnackbarComponent, EditMeetupcardComponent],
   imports: [
