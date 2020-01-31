@@ -16,6 +16,7 @@ export class Meetup extends VersionedDataTransferObject {
       frequency: {value: '', scope: 'public'},
       email: {value: '', scope: 'public'},
       phone: {value: '', scope: 'public'},
+      contact: {value: '', scope: 'public'},
       scope: 'private',
       s: 'New',
     });
@@ -25,7 +26,8 @@ export class Meetup extends VersionedDataTransferObject {
   name: string;
   address: ScopedField;
   frequency: ScopedField;
-  email?: ScopedField;
-  phone?: ScopedField;
+  email: ScopedField;
+  phone: ScopedField;
+  contact: ScopedField;
   scope: 'public' | 'internal' | 'private';
 }

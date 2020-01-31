@@ -15,7 +15,14 @@ export class EditMeetupcardComponent implements OnInit {
     public dialogRef: MatDialogRef<EditMeetupcardComponent>,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const newMeetup = new Meetup();
+    Object.keys(newMeetup).forEach(key => {
+      if (!this.meetup[key]) {
+        this.meetup[key] = newMeetup[key];
+      }
+    });
+  }
 
   change(meetup) {
     delete meetup.s;

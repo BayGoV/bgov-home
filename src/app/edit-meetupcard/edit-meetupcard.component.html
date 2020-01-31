@@ -6,7 +6,7 @@
         <label>
           <input
             matInput
-            placeholder="Name"
+            placeholder="Name des Spielabends"
             name="name"
             [(ngModel)]="meetup.name"
           />
@@ -15,6 +15,16 @@
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
+    <mat-form-field>
+      <label>
+        <input
+          matInput
+          placeholder="Ansprechpartner"
+          name="contact"
+          [(ngModel)]="meetup.contact.value"
+        />
+      </label>
+    </mat-form-field>
     <mat-form-field>
       <label>
         <input

@@ -2,14 +2,28 @@
   <header>
     <h4 class="mat-h4">
       Spielabend {{ meetup.name }}
-      <mat-icon *ngIf="editable && meetup.s" (click)="editMeetup(meetup)">edit</mat-icon>
+      <mat-icon *ngIf="editable && meetup.s" (click)="editMeetup(meetup)"
+      >edit
+      </mat-icon
+      >
     </h4>
     <mat-spinner *ngIf="!meetup.s" diameter="18"></mat-spinner>
   </header>
   <div>
-    <p *ngIf="meetup.address.value">Adresse: {{ meetup.address.value }}</p>
-    <p *ngIf="meetup.frequency.value">Wann: {{ meetup.frequency.value }}</p>
-    <p *ngIf="meetup.email.value">Email: {{ meetup.email.value }}</p>
-    <p *ngIf="meetup.phone.value">Telefon: {{ meetup.phone.value }}</p>
+    <p *ngIf="meetup.contact && meetup.contact.value">
+      Ansprechpartner: {{ meetup.contact.value }}
+    </p>
+    <p *ngIf="meetup.address && meetup.address.value">
+      Adresse: {{ meetup.address.value }}
+    </p>
+    <p *ngIf="meetup.frequency && meetup.frequency.value">
+      Wann: {{ meetup.frequency.value }}
+    </p>
+    <p *ngIf="meetup.email && meetup.email.value">
+      Email: {{ meetup.email.value }}
+    </p>
+    <p *ngIf="meetup.phone && meetup.phone.value">
+      Telefon: {{ meetup.phone.value }}
+    </p>
   </div>
 </section>
