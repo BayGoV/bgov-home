@@ -5,9 +5,6 @@ import { MembersService } from '../members.service';
 import { map, switchMap } from 'rxjs/operators';
 import { PreferencesService } from '../preferences.service';
 import { Member } from '../model/member.model';
-import { MeetupService } from '../meetup.service';
-import { NewMeetupcardComponent } from '../new-meetupcard/new-meetupcard.component';
-import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-profile',

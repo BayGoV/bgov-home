@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NewMeetupcardComponent } from '../new-meetupcard/new-meetupcard.component';
 import { MatDialog } from '@angular/material';
 import { map, switchMap } from 'rxjs/operators';
 import { Member } from '../model/member.model';
 import { MeetupService } from '../meetup.service';
+import {EditMeetupcardComponent} from '../edit-meetupcard/edit-meetupcard.component';
+import {Meetup} from '../model/meetup.model';
 
 @Component({
   selector: 'app-meetuptable',
@@ -26,11 +27,11 @@ export class MeetuptableComponent implements OnInit {
   }
 
   editMeetup(meetup) {
-    this.dialog.open(NewMeetupcardComponent, { data: meetup });
+    this.dialog.open(EditMeetupcardComponent, { data: meetup });
   }
 
   addOne() {
-    this.dialog.open(NewMeetupcardComponent);
+    this.dialog.open(EditMeetupcardComponent, { data: new Meetup() });
   }
 
   change(meetup) {

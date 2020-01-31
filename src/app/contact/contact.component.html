@@ -3,27 +3,21 @@
   aller Art
 </h3>
 <form>
-  <mat-form-field appearance="fill">
-    <label>
-      <input
-        matInput
-        placeholder="Betreff"
-        name="subject"
-        [(ngModel)]="subject"
-      />
-    </label>
-    <mat-hint>Maximal 100 Zeichen</mat-hint>
-  </mat-form-field>
-  <mat-form-field appearance="fill" class="textarea">
-    <label>
-      <textarea
-        matInput
-        placeholder="Nachricht"
-        name="message"
-        [(ngModel)]="message"
-      ></textarea>
-    </label>
-  </mat-form-field>
+  <label>
+    <input
+      placeholder="Betreff"
+      name="subject"
+      [(ngModel)]="subject"
+    />
+  </label>
+
+  <label>
+    <textarea
+      placeholder="Nachricht"
+      name="message"
+      [(ngModel)]="message"
+    ></textarea>
+  </label>
 </form>
 <button mat-button (click)="snack()">
   <mat-icon>mail_outline</mat-icon>

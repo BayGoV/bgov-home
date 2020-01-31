@@ -4,11 +4,45 @@
 }
 
 mat-icon {
-  font-size: 1em;
+  font-size: 1.2em;
   margin-left: 0.5em;
+  vertical-align: middle;
 }
 
 mat-card-subtitle {
   display: flex;
   flex-direction: row;
+}
+
+section {
+  border: black solid 1px;
+  border-radius: 1em;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header,
+div {
+  margin-left: 1em;
+}
+
+p {
+  margin-bottom: 0.5em;
+}
+
+mat-spinner {
+  color: var(--primary-color);
+  margin-left: 0.5em;
+}
+
+h4.mat-h4 {
+  margin-bottom: 0;
+}
+
+::ng-deep .mat-progress-spinner circle{
+  stroke: var(--text-primary-color) !important
 }

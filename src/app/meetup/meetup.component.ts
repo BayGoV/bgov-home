@@ -1,6 +1,4 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {NewMeetupcardComponent} from '../new-meetupcard/new-meetupcard.component';
 import {MeetupService} from '../meetup.service';
 import {LoginState} from '../store/login.reducer';
 import {select, Store} from '@ngrx/store';

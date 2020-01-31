@@ -6,7 +6,9 @@
     <table>
       <tr class="header">
         <th></th>
-        <th><label>Entwurf</label><label>Verein</label><label>Öffentlich</label></th>
+        <th>
+          <label>Entwurf</label><label>Verein</label><label>Öffentlich</label>
+        </th>
         <th>bearbeiten</th>
       </tr>
       <tr *ngFor="let meetup of meetups">
@@ -14,7 +16,11 @@
           {{ meetup.name }}
         </td>
         <td>
-          <mat-radio-group aria-label="Select an option" [(ngModel)]="meetup.scope" (change)="change(meetup)">
+          <mat-radio-group
+            aria-label="Select an option"
+            [(ngModel)]="meetup.scope"
+            (change)="change(meetup)"
+          >
             <mat-radio-button value="private"></mat-radio-button>
             <mat-radio-button value="internal"></mat-radio-button>
             <mat-radio-button value="public"></mat-radio-button>
@@ -26,9 +32,11 @@
       </tr>
       <tr style="height: 1em"></tr>
       <tr>
-        <td (click)="addOne()" colspan="4">
-          <mat-icon class="add">note_add</mat-icon>
-          Spielabend hinzufügen
+        <td colspan="4">
+          <button mat-button (click)="addOne()">
+            <mat-icon class="add">note_add</mat-icon>
+            Spielabend hinzufügen
+          </button>
         </td>
       </tr>
     </table>

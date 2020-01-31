@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 2em;
+  text-align: center;
+  line-height: 2em;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+}
+button {
+  align-self: center;
+  color: var(--primary-lighter-color);
+}
+
+mat-icon {
+  margin-right: 1em;
+}

@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Meetup } from '../model/meetup.model';
 import { MeetupService } from '../meetup.service';
+import {MatDialog} from '@angular/material';
+import {EditMeetupcardComponent} from '../edit-meetupcard/edit-meetupcard.component';
 
 @Component({
   selector: 'app-meetupcard',
@@ -11,17 +13,12 @@ import { MeetupService } from '../meetup.service';
 export class MeetupcardComponent implements OnInit {
   @Input() meetup$: Observable<Meetup>;
   @Input() editable = false;
-  @Input() editing = false;
-  @Output() doneEditing = new EventEmitter();
 
-  constructor(private meetupService: MeetupService) {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
 
-  change(meetup) {
-    delete meetup.s;
-    this.meetupService.update(meetup);
-    this.editing = false;
-    this.doneEditing.emit();
+  editMeetup(meetup) {
+    this.dialog.open(EditMeetupcardComponent, { data: meetup });
   }
 }

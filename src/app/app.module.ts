@@ -48,8 +48,9 @@ import { aotSnackbarReducer } from './store/snackbar.reducer';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { MeetupcardComponent } from './meetupcard/meetupcard.component';
 import { MeetupComponent } from './meetup/meetup.component';
-import { NewMeetupcardComponent } from './new-meetupcard/new-meetupcard.component';
 import { MeetuptableComponent } from './meetuptable/meetuptable.component';
+import { EditMeetupcardComponent } from './edit-meetupcard/edit-meetupcard.component';
+import { MembershipComponent } from './membership/membership.component';
 
 const socketConfig: SocketIoConfig = {
   url: API_URL,
@@ -78,10 +79,11 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     SnackbarComponent,
     MeetupcardComponent,
     MeetupComponent,
-    NewMeetupcardComponent,
     MeetuptableComponent,
+    EditMeetupcardComponent,
+    MembershipComponent,
   ],
-  entryComponents: [SnackbarComponent, NewMeetupcardComponent],
+  entryComponents: [SnackbarComponent, EditMeetupcardComponent],
   imports: [
     HttpClientModule,
     BrowserModule,

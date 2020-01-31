@@ -1,48 +1,15 @@
-<ng-container *ngIf="!editing">
-  <mat-card *ngIf="meetup$ | async as meetup">
-    <mat-card-header>
-      <mat-card-subtitle
-        >Spielabend {{ meetup.name }}
-        <mat-icon *ngIf="editable" (click)="editing = true">edit</mat-icon>
-        <mat-spinner *ngIf="!meetup.s" diameter="18"></mat-spinner>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p *ngIf="meetup.address">Adresse: {{ meetup.address.value }}</p>
-      <p *ngIf="meetup.frequency">Wann: {{ meetup.frequency.value }}</p>
-      <p *ngIf="meetup.email">Email: {{ meetup.email.value }}</p>
-      <p *ngIf="meetup.phone">Telefon: {{ meetup.phone.value }}</p>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
-
-<ng-container *ngIf="editing">
-  <mat-card *ngIf="meetup$ | async as meetup">
-    <mat-card-header>
-      <mat-card-subtitle
-        >Spielabend
-        <input [(ngModel)]="meetup.name" />
-        <mat-icon color="accent" (click)="change(meetup)">edit</mat-icon>
-        <mat-spinner *ngIf="!meetup.s" diameter="18"></mat-spinner>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p *ngIf="meetup.address">
-        Adresse:
-        <input [(ngModel)]="meetup.address.value" />
-      </p>
-      <p *ngIf="meetup.frequency">
-        Wann:
-        <input [(ngModel)]="meetup.frequency.value" />
-      </p>
-      <p *ngIf="meetup.email">
-        Email:
-        <input [(ngModel)]="meetup.email.value" />
-      </p>
-      <p *ngIf="meetup.phone">
-        Telefon:
-        <input [(ngModel)]="meetup.phone.value" />
-      </p>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
+<section *ngIf="meetup$ | async as meetup">
+  <header>
+    <h4 class="mat-h4">
+      Spielabend {{ meetup.name }}
+      <mat-icon *ngIf="editable && meetup.s" (click)="editMeetup(meetup)">edit</mat-icon>
+    </h4>
+    <mat-spinner *ngIf="!meetup.s" diameter="18"></mat-spinner>
+  </header>
+  <div>
+    <p *ngIf="meetup.address.value">Adresse: {{ meetup.address.value }}</p>
+    <p *ngIf="meetup.frequency.value">Wann: {{ meetup.frequency.value }}</p>
+    <p *ngIf="meetup.email.value">Email: {{ meetup.email.value }}</p>
+    <p *ngIf="meetup.phone.value">Telefon: {{ meetup.phone.value }}</p>
+  </div>
+</section>

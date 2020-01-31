@@ -1,5 +1,3 @@
-@import "../../theme";
-
 :host {
   display: flex;
   flex-direction: column;
@@ -10,9 +8,15 @@
 form {
   display: flex;
   flex-direction: column;
-  background: $dark-bg-lighter-10;
 }
 
 textarea {
   height: 10em;
+  width: 100%;
+}
+
+input {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+  min-width: 50%;
 }

@@ -7,8 +7,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthenticatedUserGuard } from './authenticated-user.guard';
 import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
-import {MeetupComponent} from './meetup/meetup.component';
-import {AuthenticationHelperGuard} from './authentication-helper.guard';
+import { MeetupComponent } from './meetup/meetup.component';
+import { AuthenticationHelperGuard } from './authentication-helper.guard';
+import { MembershipComponent } from './membership/membership.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
@@ -24,6 +25,10 @@ const routes: Routes = [
         path: 'meetup',
         component: MeetupComponent,
         canActivate: [AuthenticationHelperGuard],
+      },
+      {
+        path: 'membership',
+        component: MembershipComponent,
       },
     ],
   },
