@@ -12,6 +12,7 @@ import { AuthenticationHelperGuard } from './authentication-helper.guard';
 import { MembershipComponent } from './membership/membership.component';
 import { MailingListsComponent } from './mailing-lists/mailing-lists.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { RecoverComponent } from './recover/recover.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -43,6 +44,7 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'recover', component: RecoverComponent },
   { path: 'impressum', component: ImpressumComponent },
   { path: 'datenschutz', component: DatenschutzComponent },
   {

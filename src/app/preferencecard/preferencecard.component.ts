@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class PreferencecardComponent implements OnInit {
   @Input() preference$: Observable<Preference>;
+  editBackupEmail;
 
   constructor(private preferenceService: PreferencesService) {}
 

@@ -1,0 +1,22 @@
+<section>
+  <form class="login-form">
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Email" name="email" [(ngModel)]="email" />
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <label>
+        <input
+          matInput
+          placeholder="Code"
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+        />
+      </label>
+    </mat-form-field>
+    <mat-icon id="app-login" (click)="login()">exit_to_app</mat-icon>
+  </form>
+</section>

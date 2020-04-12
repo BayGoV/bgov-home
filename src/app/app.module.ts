@@ -53,6 +53,7 @@ import { EditMeetupcardComponent } from './edit-meetupcard/edit-meetupcard.compo
 import { MembershipComponent } from './membership/membership.component';
 import { MailingListsComponent } from './mailing-lists/mailing-lists.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { RecoverComponent } from './recover/recover.component';
 
 const socketConfig: SocketIoConfig = {
   url: API_URL,
@@ -86,6 +87,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MembershipComponent,
     MailingListsComponent,
     WelcomeComponent,
+    RecoverComponent,
   ],
   entryComponents: [SnackbarComponent, EditMeetupcardComponent],
   imports: [

@@ -6,4 +6,6 @@ export class Preference extends VersionedDataTransferObject {
   inviteMeToActivities: boolean;
   inviteMeToTournaments: boolean;
   inviteMeToDoodles: boolean;
+  backupEmail: string;
+  secret: string;
 }

@@ -17,3 +17,26 @@ mat-card-subtitle {
 mat-spinner {
   margin-left: 1em;
 }
+
+div {
+  margin-top: 1em;
+  margin-left: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+input {
+  margin-left: 1em;
+  width: 12em;
+}
+
+mat-icon {
+  margin-left: 1em;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+span {
+  margin-left: 1em;
+}

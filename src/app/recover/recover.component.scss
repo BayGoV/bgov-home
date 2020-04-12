@@ -1,0 +1,30 @@
+@import "../../theme";
+
+:host {
+  display: block;
+  margin: 1em;
+}
+
+section {
+  margin-top: 1em;
+}
+
+form {
+  margin: auto;
+  padding: 2em;
+  border-radius: 1em;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: $dark-background;
+  color: #f5e7c2;
+}
+
+mat-icon {
+  font-size: 3em;
+  width: initial;
+  height: initial;
+  margin-right: 0.333em;
+}

@@ -28,5 +28,18 @@
         >Einladungen zu Meinungsbildern (Doodle)
       </mat-checkbox>
     </p>
+    <div *ngIf="true || !!preference.backupEmail || editBackupEmail">
+      Backup-Email:
+      <span *ngIf="!editBackupEmail">{{ preference.backupEmail }}</span
+      ><input
+        *ngIf="editBackupEmail"
+        (keydown.enter)="change(preference)"
+        [(ngModel)]="preference.backupEmail"
+      />
+      <mat-icon color="accent" (click)="editBackupEmail = !editBackupEmail"
+        >edit
+      </mat-icon>
+    </div>
+    <div>Rettungs-Code: <span>{{preference.secret}}</span></div>
   </mat-card-content>
 </mat-card>
