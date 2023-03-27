@@ -3,6 +3,7 @@ RUN mkdir /workspace
 WORKDIR /workspace
 COPY src ./src
 COPY package.json ./
+COPY package-lock.json ./
 COPY karma.conf.js ./
 COPY angular.json ./
 COPY tsconfig.* ./
