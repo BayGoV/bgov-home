@@ -1,4 +1,4 @@
-FROM node as builder
+FROM node:14 as builder
 RUN mkdir /workspace
 WORKDIR /workspace
 COPY src ./src
