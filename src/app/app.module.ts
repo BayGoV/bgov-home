@@ -41,7 +41,6 @@ import { MembercardComponent } from './membercard/membercard.component';
 import { PreferencecardComponent } from './preferencecard/preferencecard.component';
 import { MemberEffects } from './store/member.effects';
 import { MenuComponent } from './menu/menu.component';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ContactComponent } from './contact/contact.component';
 import { SnackbarEffects } from './store/snackbar.effects';
 import { aotSnackbarReducer } from './store/snackbar.reducer';
@@ -54,11 +53,7 @@ import { MembershipComponent } from './membership/membership.component';
 import { MailingListsComponent } from './mailing-lists/mailing-lists.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RecoverComponent } from './recover/recover.component';
-
-const socketConfig: SocketIoConfig = {
-  url: API_URL,
-  options: {},
-};
+import { SocketIoModule } from 'ngx-socket-io';
 
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: API_URL + '/api',
@@ -103,7 +98,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
     MatSnackBarModule,
     MatDialogModule,
     FormsModule,
-    SocketIoModule.forRoot(socketConfig),
+    SocketIoModule,
     StoreModule.forRoot({
       login: aotLoginReducer,
       snackbar: aotSnackbarReducer,
@@ -127,4 +122,5 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+}

@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+import { Socket, SocketIoConfig } from 'ngx-socket-io';
 import { AuthService } from './auth.service';
 import { EntityActionFactory, EntityOp } from '@ngrx/data';
 import { Store } from '@ngrx/store';
+import { API_URL } from './constants';
+
+const socketConfig: SocketIoConfig = {
+  url: API_URL,
+  options: {},
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocketService {
   constructor(
-    private socket: Socket,
     private authService: AuthService,
     private store: Store<{}>,
   ) {
+  }
+
+  async subscribe() {
+    const socket = new Socket(socketConfig);
     socket.fromEvent('update').subscribe((message: any) => {
       const action = new EntityActionFactory().create(
         message.type,
@@ -21,10 +30,7 @@ export class SocketService {
       );
       this.store.dispatch(action);
     });
-  }
-
-  async subscribe() {
     const token = await this.authService.token();
-    this.socket.emit('subscribe', token);
+    socket.emit('subscribe', token);
   }
 }
